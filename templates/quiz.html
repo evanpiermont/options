@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href={{ url_for('static', filename='styles/main.css') }} />
+    <link type="text/css" rel="stylesheet" href={{ url_for('static', filename='styles/quiz.css') }} />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js" charset="utf-8"></script>
+    <script src={{ url_for('static', filename='js/bg.js') }} language="Javascript" type="text/javascript"></script>   
+    <script src={{ url_for('static', filename='js/instructions.js') }} language="Javascript" type="text/javascript"></script>
+    <script type="text/javascript">
+        var $subject = '{{subject_id}}';
+    </script>
+    
+    <title> </title>
+</head>
+
+<body>
+    <div id='background'>
+        
+    
+    <div class=question id=q1>
+        What is the value of <span class=port data=3.25:0.6></span> if SPY's share price increases by $5.00?
+    </div>
+
+    <div class=question id=q2>
+        What is the value of <span class=port data=2.00:1.5></span> if SPY's share price decreases by $2.50?
+    </div>
+
+    <div class=question id=q3>
+        What is the value of <span class=port data=2.30:1.0></span> if SPY's share price decreases by $1.00?
+    </div>
+
+
+
+    <div id=adminenter>
+
+                 
+    <form method='POST' name='survey' enctype='multipart/form-data' action='/quizval'>
+
+
+
+    <div class=answer id=a1> 
+    <input type="radio" name="q1" id="set1" value=1 required>
+    <label for="set1"><span>$8.25 </span></label>
+    <input type="radio" name="q1" id="noset1" value=0 required>
+    <label for="noset1"><span>$6.25</span></label>
+    </div>
+
+    <div class=answer id=a2> 
+    <input type="radio" name="q2" id="set2" value=1 required>
+    <label for="set2"><span>$2.00</span></label>
+    <input type="radio" name="q2" id="noset2" value=0 required>
+    <label for="noset2"><span>$0.00</span></label>
+    </div>
+
+    <div class=answer id=a3> 
+    <input type="radio" name="q3" id="set3" value=1 required>
+    <label for="set3"><span>$3.30</span></label>
+    <input type="radio" name="q3" id="noset3" value=0 required>
+    <label for="noset3"><span>$1.00</span></label>
+    </div>
+
+
+
+
+    <input type="hidden" name="subject_id" value={{ subject_id }}>
+    <input type="submit" value="Continue" class=submit id=submit>
+
+
+    </form>
+
+    </div>
+        <div id=subject_id_box> Subject#: {{subject_id}}</div>
+
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href={{ url_for('static', filename='styles/main.css') }} />
+    <link type="text/css" rel="stylesheet" href={{ url_for('static', filename='styles/survey.css') }} />
+    <script type="text/javascript" src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src={{ url_for('static', filename='js/bg.js') }} language="Javascript" type="text/javascript"></script>   
+    <script type="text/javascript">
+        var $subject = '{{subject_id}}';
+    </script>
+    
+    <title> </title>
+</head>
+
+<body>
+    <div id='background'>
+        
+        
+        <div id=adminenter>
+                 
+    <form method='POST' name='survey' enctype='multipart/form-data' action='/end'>
+
+    Age: 
+    <input type="radio" name="age" id="18-30" value=0 required>
+    <label for="18-30"><span>18-30</span></label>
+    <input type="radio" name="age" id="31-45" value=1 required>
+    <label for="31-45"><span>31-45</span></label>
+    <input type="radio" name="age" id="46-65" value=2 required>
+    <label for="46-65"><span>46-65</span></label>
+    <input type="radio" name="age" id="65+" value=3 required>
+    <label for="65+"><span>65+</span></label>
+
+
+    <br><br>
+
+    Gender:
+    <input type="radio" name="gender" id="female" value=0 required>
+    <label for="female"><span>Female</span></label>
+    <input type="radio" name="gender" id="male" value=1 required>
+    <label for="male"><span>Male</span></label>
+    <input type="radio" name="gender" id="other-gender" value=2 required>
+    <label for="other-gender"><span>Other</span></label>
+
+    <br><br>
+
+    Highest degree completed so far:
+    <input type="radio" name="degree" id="highschool" value=0 required>
+    <label for="highschool"><span>High School</span></label>
+    <input type="radio" name="degree" id="somecollege" value=1 required>
+    <label for="somecollege"><span>Some College</span></label>
+    <input type="radio" name="degree" id="bachelors" value=2 required>
+    <label for="bachelors"><span>Bachelors</span></label>
+    <input type="radio" name="degree" id="masters" value=3 required>
+    <label for="masters"><span>Masters</span></label>
+    <input type="radio" name="degree" id="doctorate" value=4 required>
+    <label for="doctorate"><span>Ph.D.</span></label>
+
+
+
+    <input type="hidden" name="subject_id" value={{ subject_id }}>
+    <input type="submit" value="Continue" class=submit id=submit>
+
+
+    </form>
+
+    </div>
+        <div id=subject_id_box> Subject#: {{subject_id}}</div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href={{ url_for('static', filename='styles/main.css') }} />
+    <link type="text/css" rel="stylesheet" href={{ url_for('static', filename='styles/choiceproblem.css') }} />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js" charset="utf-8"></script>
+    <script src={{ url_for('static', filename='js/bg.js') }} language="Javascript" type="text/javascript"></script>   
+    <script src={{ url_for('static', filename='js/choiceproblem.js') }} language="Javascript" type="text/javascript"></script>
+    <script type="text/javascript">
+        var $subject = '{{subject_id}}';
+        var $symbol = '{{symbol}}';
+    </script>
+    
+    <title> </title> 
+</head>
+<body>
+    <div id='background'>
+
+
+    <div id='cp'>
+    Please select your most preferred of the following portfolios. The current price of {{symbol}} is ${{current_price}}.
+
+    <form method='POST' name='survey' enctype='multipart/form-data' action={{action}}>
+
+    {% for p in port_arr %}
+    <input type="radio" name=cp id=pid-{{p[1]}} value={{p[1]}} required>
+    <label for=pid-{{p[1]}}><span class=port data={{p[0]}}></span></label>
+    {% endfor %}
+
+    
+    <input type="hidden" name="begining_price" value={{current_price}}>
+
+    <input type="submit" value="Continue" class=submit id=submit>
+
+
+    </form>
+    </div>
+    
+    <div id=graph_wrap>    
+    <div id="graph" class="aGraph"></div>
+    <div id="profit_text">
+        Intial Price: <span id=open></span> <br>
+        Final Price: <span id=close></span> <br>
+        Option Value: <span id=o_value></span>
+    </div>
+    </div>
+    <div id=graph_tog>CHART</div>
+        <div id=subject_id_box> Subject#: {{subject_id}}</div>
+    </div>
+</body>
+</html>

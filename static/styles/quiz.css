@@ -1,0 +1,159 @@
+#submit{
+    position:fixed;
+    top: 88%;
+    right: 5%;
+    width: 15%;
+    height: 5%;
+    padding-top: 3px;
+    border-radius: 4px;
+    color: #ED8689
+}
+
+input[type="radio"] {
+    opacity: 0;
+}
+
+input[type="radio"] + label span {
+    cursor:pointer;
+    display: inline-block;
+    border-radius:  5px;
+    color:#ED8689;
+    background-color:#0A3F61;
+    padding: 20px;
+    text-align: center;
+    min-width: 130px;
+}
+
+#adminenter{
+  position: fixed;
+  left: 10%;
+  top: 10%;
+  font-size: 30%
+}
+
+
+input[type="radio"]:checked + label span{
+     background-color:#ED8689;
+     color: #0A3F61;
+}
+
+
+input[type="number"]{
+    display: inline-block;
+    border-radius:  5px;
+    margin-left: 10px;
+    color:#b58900;
+    padding: 4px;
+    text-align: center;
+    font-size: 100%
+}
+
+.submit{
+  font-size: 100%;
+}
+
+.question{
+  position: fixed;
+  left: 10%;
+  height: 18%;
+  width: 60%;
+  font-size: 50%;
+}
+
+.answer{
+  position: fixed;
+  left: 70%;
+  height: 20%;
+  width: 30%;
+}
+
+#q1{
+    top: 20%;
+}
+
+#q2{
+    top: 45%;
+}
+
+#q3{
+    top: 70%;
+}
+
+
+
+#a1{
+    top: 20%;
+}
+
+
+#a2{
+    top: 45%;
+}
+
+#a3{
+    top: 70%;
+}
+
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 500px) {
+
+input[type="radio"] + label span {
+    min-width: 70px;
+    margin-top: 2px;
+}
+
+.display_card{
+  position: relative;
+  width: 25%;
+  height: 50%;
+  border: 2px solid #073642;
+  background: #839496;
+  border-radius: 3px;
+}
+
+.question{
+  position: fixed;
+  left: 10%;
+  height: 18%;
+  width: 60%;
+}
+
+.answer{
+  position: fixed;
+  left: 70%;
+  height: 20%;
+  width: 20%;
+}
+
+#submit{
+    position: fixed;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-left: #fdf6e3 solid 3px;
+    height: 8%;
+    top: 92%;
+    width: 50%;
+    right: 0%;
+}
+
+#a1{
+    top: 6%;
+}
+
+
+#a2{
+    top: 24%;
+}
+
+#a3{
+    top: 42%;
+}
+
+#a4{
+    top: 60%;
+}
+
+#a5{
+    top: 78%;
+}

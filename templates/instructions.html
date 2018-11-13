@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href={{ url_for('static', filename='styles/main.css') }} />
+    <link type="text/css" rel="stylesheet" href={{ url_for('static', filename='styles/instructions.css') }} />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js" charset="utf-8"></script>
+    <script src={{ url_for('static', filename='js/bg.js') }} language="Javascript" type="text/javascript"></script>   
+    <script src={{ url_for('static', filename='js/instructions.js') }} language="Javascript" type="text/javascript"></script>
+    <script type="text/javascript">
+        var $subject = '{{subject_id}}';
+    </script>
+    
+    <title> </title> 
+</head>
+<body>
+    <div id='background'>
+        
+        <div id=wrap>
+        <div class="inst" id=pane-1>
+            <header><h4>Thanks for participating in our research!</h4></header>
+            <br>     
+            <p>This study is comprised of a short task and some questions. It's conducted by researchers
+            at Royal Holloway, University of London (UK). Our goal is to learn
+            more about decision-making. It should take about 5 minutes to complete.</p>
+            <br>
+            <p> Your participation is voluntary and your responses are anonymous. No one will be able to
+            track your answers back to you. </p>
+            <br>
+            <p>Questions? Please contact Micheal Richter at his house at night</p>
+        </div>
+        
+        <div class="inst" id=pane-2>
+            <p>This is an experimental study about decision-making. On top of the ${{fixed_payment}} for completing the
+            study, you can receive an additional payment based on your choices. This additional payment will
+            only be available to participants that correctly answer a few comprehension questions prior to
+            the start of the study.</p>
+            <br>
+            <p>In the following pages we will explain the experimental task, how you make decisions, and how
+            the extra payment is determined.</p>
+            <br>
+            <p>Any extra payment will be deposited as a bonus on MTurk within 3 days of completion.</p>
+        </div>
+
+        <div class="inst" id=pane-3>
+            <p>This study consists of several choice problems where you will choose between different investment portfolios. One of the choice problems will be randomly selected, and your
+            payment will be determined by the portforlio you choose in that problem.</p>
+            <br>
+            <p>A <b>portfolio</b> has two components,
+                <br><br>
+            <ul>
+                <li>
+                A cash component: this is an amount of money you will get for sure.
+                </li><br>
+                <li>
+                A share of a stock option: payment assocated with the stock option depends
+                on the performance of <span class=hl>{{symbol}}</span>, which tracks the preformance of the S&#38;P500 stock market index.
+                </li>
+            </ul> 
+            <br>
+            <p></p>
+        </div>
+
+        <div class="inst" id=pane-4>
+            The stock option's value will be calculated in {{delay}} days, on {{executeTime}} (after markets close, if applicable).
+            <br><br>
+            The value of the stock option will be the difference between the current value of the stock (<b>now</b>) and its value at the time of calculation (<b>in {{delay}} days</b>), or 0, which ever is larger.
+
+
+            When choosing a portfolio, you will have acess to the current value of <span class=hl>SPY</span> as well as a chart with the indexes preformance over then last 100 days.
+
+        </div>
+
+        <div class="inst" id=pane-5>
+
+        To reiterate, <br><br>
+            <ul>
+                <li>
+                If the share price of <span class=hl>{{symbol}}</span> increases over the next {{delay}} days, the option is worth the amount of th increase.
+                </li><br>
+                <li>
+                If the share price of <span class=hl>{{symbol}}</span> decreases over the next {{delay}} days, the option is worth 0: you cannot lose money by holding the option.
+                </li>
+            </ul> 
+        </div>
+
+        <div class="inst" id=pane-6>
+            For example, consider the portfolio <span class=port data=2.50:0.8></span>, with as cash value of $2.50 and 0.8 shares of the stock option. If
+
+             <br><br>
+            <ul>
+                <li>
+                If the share price of <span class=hl>{{symbol}}</span> increases by $5.50, the portfolio is worth: 2.50 + 0.8*5.50 = $6.90.
+                </li><br>
+                <li>
+                If the share price of <span class=hl>{{symbol}}</span> decreases by $3.20, the portfolio is worth: 2.50 + 0.8*0 = $2.50.
+                </li>
+            </ul>  
+            <br><br>
+
+        </div>
+        <div class="inst" id=pane-7>
+            Again, consider the portfolio <span class=port data=4.00:0.5></span>, with as cash value of $4.00 and 0.5 shares of the stock option. If
+
+             <br><br>
+            <ul>
+                <li>
+                If the share price of <span class=hl>{{symbol}}</span> increases by $2.70, the portfolio is worth: 4.00 + 0.5*2.70 = $5.35.
+                </li><br>
+                <li>
+                If the share price of <span class=hl>{{symbol}}</span> decreases by $1.90, the portfolio is worth: 4.90 + 0.5*0 = $4.00.
+                </li>
+            </ul>  
+            <br><br>
+        </div>
+
+        <div class="inst" id=pane-8>
+        When choosing bewteen portfolios, you can view the performance of <span class=hl>{{symbol}}</span> over the last 100 days by clicking on the "CHART" button.
+        <br><br>
+        By hovering your mouse over the chart, you can see what the value of one share of the stock option would have been worth at each date.
+        </div>
+        
+        <div class="inst" id=pane-9>
+            <header><h4>Comprehension Questions and Payment</h4></header>
+            <br>
+            <p>We'll now ask you a few comprehension questions. We'll show you three different
+            portfolios and ask you their value under different preformance levels:</p>
+            <br>
+            <ul>
+                <li>
+                If you get one or more questions wrong, the study ends and you receive ${{fixed_payment}}.
+                </li>
+                <li>
+                If you answer all questions correctly, you'll receive ${{fixed_payment}} for completing the study and the value of your seleted portforlio.
+                </li>
+            </ul>
+        </div>
+        
+        
+        <div class="submit" id=prev>Prev</div>
+        <div class="submit" id=next>Next</div>
+        </div>
+        <div id=subject_id_box> Subject#: {{subject_id}}</div>
+    </div>
+</body>
+</html>
