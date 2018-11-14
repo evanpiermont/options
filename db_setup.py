@@ -93,7 +93,9 @@ class Selection(db.Model):
     choice = Column(Integer, ForeignKey("portfolio.id")) # the anwser
     time_start = Column(DateTime) #when did she start the question
     time_end = Column(DateTime) #when did she end the question
-    begining_price = Column(Integer) #sp500 price at time start
+    beginning_price = Column(Integer) #sp500 price at time start --- demonomiated in cents
     ending_price = Column(Integer) #sp500 price at exicute (post exp)
+    chart_time = Column(Integer) #how long was the chart open, ms
+    click_hist = Column(String) #prior clicks: array with [portfolio id, JS time], in JSON string format
     rnd = Column(Integer) #when did the subject do this?
     subject = Column(Integer, ForeignKey("subject.id")) #who was is?

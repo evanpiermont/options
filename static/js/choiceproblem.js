@@ -1,11 +1,16 @@
 
 
-var option_len = 7
+var option_len = 7;
+var click_hist = [];
+var chart_time = 0;
+
 
 document.addEventListener("DOMContentLoaded", function(event) {
 var api = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+$symbol+'&apikey=TDO6ET6NSGZF1MZ5';
+var api_beginning_price = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol='+$symbol+'&apikey=TDO6ET6NSGZF1MZ5';
 
   togChart();
+  clickHist();
 
   fetch(api)
      .then(function(response) { return response.json(); })
@@ -15,21 +20,55 @@ var api = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='
       drawChart(parsedData);
 
      })
+
+      fetch(api_beginning_price)
+     .then(function(response) { return response.json(); })
+     .then(function(data) { 
+
+      var parsedData = parseData(data)
+        price = data['Global Quote']['08. previous close']
+        d3.select('#price').text('$'+price.slice(0,-2));
+        price_input = document.getElementById('beginning_price')
+        price_input.value = price;
+
+
+
+     })
 });
 
-function togChart() {
+function togChart() { //open and close the chart app
+  var startTime, endTime;
   d3.select('#graph_tog')
       .on("click", function() { 
         gw = d3.select('#graph_wrap')
         cp = d3.select('#cp')  
         disp = gw.style("display")
         if (disp == "none"){
+          startTime = new Date();
           gw.style("display", 'block')
           cp.style("display", 'none')
         }else{
+          endTime = new Date();
+          chart_time += (endTime - startTime); //in ms
+          chart_time_input = document.getElementById('chart_time')
+          chart_time_input.value = chart_time;
+          console.log(chart_time_input.value)
           gw.style("display", 'none')
           cp.style("display", 'block')
         }
+      });
+
+};
+
+function clickHist() { //create a history of choice clicks
+  d3.selectAll('.port')
+      .on("click", function() { 
+        new_click = d3.select(this).attr("id")
+        new_click = new_click.slice(7)
+        click_hist.push([new_click, new Date(),])
+        click_hist_JSON = JSON.stringify(click_hist)
+        click_hist_input = document.getElementById('click_hist')
+        click_hist_input.value = click_hist_JSON;
       });
 
 };

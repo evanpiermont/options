@@ -36,7 +36,6 @@ delay = 7 #time till execution
 
 symbol = 'SPY'
 av_api = "TDO6ET6NSGZF1MZ5"
-API_URL = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+symbol+"&apikey=" + av_api
 
 
 q = []
@@ -158,7 +157,6 @@ def QuizVal():
     quiz_ans=[int(request.form['q1']),int(request.form['q2']),int(request.form['q3'])]
     correct = [0,1,0]
  
-    print([(x+y)%2 for x, y in zip(quiz_ans, correct)])
     if [(x+y)%2 for x, y in zip(quiz_ans, correct)] == [0,0,0]:
 
         j.tryquiz = True
@@ -206,9 +204,14 @@ def WaitNext(subject_id,rnd):
 
         return render_template('login.html', text=text, action=url_for('ChoiceProblemApp', subject_id=subject_id, rnd=rnd), input=False, v=True)
     
-    elif rnd < rounds:
+    else:
 
         p_choice = request.form['cp']
+        beginning_price = request.form['beginning_price']
+        click_hist = request.form['click_hist']
+        chart_time = request.form['chart_time']
+
+
 
         sel_num = session.query(Selection).filter(Selection.subject == j.id, Selection.rnd == rnd -1 ).count()
 
@@ -217,29 +220,21 @@ def WaitNext(subject_id,rnd):
         else:
             sel = session.query(Selection).filter(Selection.subject == j.id, Selection.rnd == rnd -1 ).one()
 
+            beginning_price = int(round(float(beginning_price)*100))
 
-            sel.choice = p_choice,
+            sel.choice = p_choice
+            sel.beginning_price = beginning_price
+            sel.click_hist = click_hist
+            sel.chart_time = chart_time
             sel.time_end = datetime.now()
 
             session.add(sel)
             session.commit()
 
-            return ChoiceProblemApp(subject_id,rnd)
-
-    else:
-
-        p_choice = request.form['cp']
-
-        sel = session.query(Selection).filter(Selection.subject == j.id, Selection.rnd == rnd -1 ).one()
-
-        sel.choice = p_choice,
-        sel.time_end = datetime.now()
-        
-        session.add(sel)
-        session.commit()
-
-
-        return render_template('survey.html', subject_id=subject_id,)
+            if rnd >= rounds:
+                return render_template('survey.html', subject_id=subject_id,)
+            else:
+                return ChoiceProblemApp(subject_id,rnd)
 
 
 ####
@@ -291,23 +286,18 @@ def ChoiceProblemApp(subject_id,rnd):
         ## permute the order of qustions
         random.shuffle(port_arr)
     
-    
-        response = requests.get(API_URL)
-        data = response.json()
-        current_price = float(data['Global Quote']['08. previous close'])
-
         if (sel_num == 0):
             #create new selection entry, no selection is made, update after submision. 
             selection = Selection(
                 choice_problem = CPid,
-                begining_price = current_price,
+                #beginning_price = current_price,
                 rnd = rnd, 
                 time_start = datetime.now(),
                 subject = j.id)    
             session.add(selection)
             session.commit()
 
-        return render_template('choiceproblem.html', subject_id = subject_id, current_price=f'{round(current_price, 2):.2f}', symbol=symbol, port_arr=port_arr, action=url_for('WaitNext', subject_id=subject_id, rnd=next_rnd),rnd=rnd)
+        return render_template('choiceproblem.html', subject_id = subject_id, symbol=symbol, port_arr=port_arr, action=url_for('WaitNext', subject_id=subject_id, rnd=next_rnd),rnd=rnd)
 
 
 @app.route('/end', methods=['POST'])
@@ -315,7 +305,6 @@ def End():
 
     subject_id=str(request.form['subject_id'])
     j = session.query(Subject).filter(Subject.idCode == subject_id).one()
-    print(j.payment_question)
     sel = session.query(Selection).filter(Selection.subject == j.id, Selection.rnd == j.payment_question).one()
     p = session.query(Portfolio).filter(Portfolio.id == sel.choice).one()
     p_data = f'{round(p.cash/100, 2):.2f}'+":"+f'{round(p.long_share/100, 2):.2f}'

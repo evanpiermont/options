@@ -19,8 +19,9 @@ import cgi
 import collections, itertools
 
 #from alpha_vantage.timeseries import TimeSeries
+session = db.session
 
-#import matplotlib.pyplot as plt
-x = [3,3,3,1,1,1,1,2,3,4]
-random.shuffle(x)
-print(x)
+j = session.query(Subject).filter(Subject.idCode == 'avavdv').one()
+sel = session.query(Selection).filter(Selection.subject == j.id, Selection.rnd == 1).one()
+
+print (sel.beginning_price)

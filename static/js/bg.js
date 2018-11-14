@@ -21,7 +21,6 @@ fontsize = function () {
     var y = window.innerHeight * z; // z of container height
     var fontSize = Math.min(x,y);
     d3.select("body").style('font-size', fontSize + "px");
-    console.log(fontSize)
 };
 
 
