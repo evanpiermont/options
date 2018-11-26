@@ -18,8 +18,9 @@ from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy import create_engine
 
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://kmwdsiybqohzkr:48c78dc82321c614a1f2058afdcf74987c7765b22a92be753f2a156d5299ad07@ec2-54-204-39-46.compute-1.amazonaws.com:5432/d40rkj7aib44id'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/Options'
+## long pg uri is heroku hosted, short is local pg
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://qkjkmzsxebomeb:e30bc41f94fd7d18da8f8d72ae0c3849847f74f06aef507debbf0b936077df53@ec2-54-235-193-0.compute-1.amazonaws.com:5432/d1kaup4k5s62fe'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/Options'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #heroku = Heroku(app)
 db = SQLAlchemy(app)
