@@ -44,7 +44,7 @@ class Subject(db.Model):
     group = Column(Integer, default=0) #which group of portfolios make up the choice problems
     age = Column(Integer) #survey questions
     gender = Column(Integer)
-    degree = Column(Integer)
+    location = Column(Integer)
 
 ## portfolios: a portfolio is a choice element, it is of the form 
 ##(fixed payment, share of S&P500, time till execute )

@@ -4,6 +4,9 @@ var option_len = 7;
 var click_hist = [];
 var chart_time = 0;
 
+var mq = window.matchMedia('only screen and (max-device-width: 500px)');
+
+
 
 document.addEventListener("DOMContentLoaded", function(event) {
 var api = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+$symbol+'&apikey=TDO6ET6NSGZF1MZ5';
@@ -105,6 +108,13 @@ function drawChart(data){
     var w = window.innerWidth*.9 - m[1] - m[3]; // width
     var h = window.innerHeight*.8 - m[0] - m[2]; // height
 
+    if(mq.matches) { 
+    m = [20, 50, 20, 50]; // margins
+    w = window.innerWidth - m[1] - m[3]; // width
+    h = window.innerHeight*.6 - m[0] - m[2]; // height
+    console.log('poo')
+    }
+
     bisectDate = d3.bisector(function(d) { return d[1]; }).left,
     formatValue = d3.format(",.2f");
     formatCurrency = function(d) { return "$" + formatValue(d); };
@@ -165,11 +175,43 @@ function drawChart(data){
       // create yAxis
       var xAxis = d3.axisBottom().scale(x).tickSize(10);
       // Add the x-axis.
+      if(mq.matches) { 
       graph.append("svg:g")
-            .attr("class", "x axis")
+            .attr("class", "x_axis")
             .attr("transform", "translate(0," + h + ")")
-            .call(xAxis);
+            .call(xAxis.ticks(d3.timeWeek.every(8)));
+          } else {
+        graph.append("svg:g")
+            .attr("class", "x_axis")
+            .attr("transform", "translate(0," + h + ")")
+            .call(xAxis.ticks(d3.timeWeek.every(2)));    
+          }
+      // graph.selectAll(".x_axis text")  // select all the text elements for the xaxis
+      //     .attr("transform", function(d) {
+      //        return "translate(" + -15 + "," + 20 + ")rotate(-45)";
+      //    });
 
+  if(mq.matches) {
+      graph.append("text")
+            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("transform", "translate(10,0)")  // text is drawn off the screen top left, move down and out and rotate
+            .text("Share Price");
+
+      graph.append("text")
+            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("transform", "translate("+ (w/2) +","+.9*(h + m[2])+")")  // centre below axis
+            .text("Date");
+      } else {
+      graph.append("text")
+            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("transform", "translate("+ -m[0] +","+(h/2)+")rotate(-90)")  // text is drawn off the screen top left, move down and out and rotate
+            .text("Share Price");
+
+      graph.append("text")
+            .attr("text-anchor", "middle")  // this makes it easy to centre the text as the transform is applied to the anchor
+            .attr("transform", "translate("+ (w/2) +","+(h + 3*m[2]/4)+")")  // centre below axis
+            .text("Date");
+            }
 
       // create left yAxis
       var yAxisLeft = d3.axisLeft().scale(y).ticks(4);
@@ -216,11 +258,13 @@ function drawChart(data){
     focus_op.attr("transform", "translate(" + x(data[2][i_op][1]) + "," + y(data[2][i_op][0]) + ")")
     .transition()
     .duration(50);
+    profit.attr("width", x(data[2][i_op][1]) - x(data[2][i_star][1]));
+
 
     if (profit_height > 0){
       profit.attr("height", profit_height)
       .transition()
-      .attr("transform", "translate(" + 0 + "," + y(data[2][i_op][0]) + ")")
+      .attr("transform", "translate(" + x(data[2][i_star][1]) + "," + y(data[2][i_op][0]) + ")")
       .attr("fill", "#00B233")
       .duration(50);
       d3.select('#o_value').text(formatCurrency(data[2][i_op][0] - data[2][i_star][0]))
@@ -228,15 +272,15 @@ function drawChart(data){
     } else {
       profit.attr("height", -profit_height)
       .transition()
-      .attr("transform", "translate(" + 0 + "," + y(data[2][i_star][0]) + ")")
-      .attr("fill", "#B20000")
+      .attr("transform", "translate(" + x(data[2][i_star][1]) + "," + y(data[2][i_star][0]) + ")")
+      .attr("fill", "#D06666")
       .duration(50);
       d3.select('#o_value').text(formatCurrency(0))
       .style('color', "#B20000");
     }
     d3.select('.overlay').raise()
-    d3.select('#open').text(formatCurrency(data[2][i_star][0]));
-    d3.select('#close').text(formatCurrency(data[2][i_op][0]));
+    d3.select('#open').text('(' + data[2][i_star][1].toLocaleDateString("en-US") + '): ' + formatCurrency(data[2][i_star][0]));
+    d3.select('#close').text('(' + data[2][i_op][1].toLocaleDateString("en-US") + '): ' + formatCurrency(data[2][i_op][0]));
 
     
 

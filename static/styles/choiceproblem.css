@@ -22,16 +22,18 @@ path {
   font-size: 70%;
 }
 
-.x.axis line {
-  stroke: lightgrey;
+.x_axis line {
+  stroke: #000;
 }
 
-.x.axis .minor {
+.x_axis .minor {
   stroke-opacity: .5;
+  
 }
 
-.x.axis path {
-  display: none;
+.x_axis path {
+  stroke: #000;
+
 }
 
 .y.axis line, .y.axis path {
@@ -138,4 +140,16 @@ input[type="radio"]:checked + label span .hl{
 
 .submit{
   font-size: 100%;
+}
+
+@media only screen and (max-width : 500px) {
+
+#profit_text{
+  position: fixed;
+  top: 77%;
+  left: 15%;
+  font-size: 25%;
+}
+
+
 }

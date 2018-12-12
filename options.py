@@ -34,7 +34,7 @@ rounds = 2 #number of rounds.
 groups = 1 #number of groups
 delay = 7 #time till execution 
 
-symbol = 'SPY'
+symbol = 'DIA'
 av_api = "TDO6ET6NSGZF1MZ5"
 
 
@@ -140,7 +140,7 @@ def Quiz(subject_id):
         return render_template('login.html', text='You have already failed the quiz.', input=False, v=False)
 
     else:
-        return render_template('quiz.html', subject_id = subject_id)
+        return render_template('quiz.html', subject_id = subject_id, symbol=symbol)
 
 ### now we need to make sure they passed the quiz. 
 
@@ -311,7 +311,7 @@ def End():
 
     j.age = request.form['age']
     j.gender = request.form['gender']
-    j.degree = request.form['degree']
+    j.location = request.form['location']
 
     session.add(j)
     session.commit()

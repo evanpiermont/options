@@ -29,12 +29,12 @@ session = db.session
 
 portfolio_list = [
 [ #group 0
-{'cash': 500, 'long_share': 35, 'time': 7, 'p_type': 0}, #cash_init 
-{'cash': 300, 'long_share': 75, 'time': 7, 'p_type': 1}, #long_init
-{'cash': 400, 'long_share': 30, 'time': 7, 'p_type': 2}, #cash_attr 
-{'cash': 200, 'long_share': 70, 'time': 7, 'p_type': 3}, #long_attr
-{'cash': 600, 'long_share': 25, 'time': 7, 'p_type': 4}, #cash_comp 
-{'cash': 200, 'long_share': 90, 'time': 7, 'p_type': 5} #long_comp
+{'cash': 450, 'long_share': 50, 'time': 7, 'p_type': 0}, #cash_init 
+{'cash': 100, 'long_share': 200, 'time': 7, 'p_type': 1}, #long_init
+{'cash': 300, 'long_share': 0, 'time': 7, 'p_type': 2}, #cash_attr 
+{'cash': 0, 'long_share': 150, 'time': 7, 'p_type': 3}, #long_attr
+{'cash': 500, 'long_share': 0, 'time': 7, 'p_type': 4}, #cash_comp 
+{'cash': 0, 'long_share': 250, 'time': 7, 'p_type': 5} #long_comp
 ]
 ]
 
