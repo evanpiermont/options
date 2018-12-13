@@ -178,7 +178,7 @@ def QuizVal():
         text = Markup("""
         You failed the quiz.
         <br><br>
-        You total payment is $"""+f'{round(j.payment/100, 2):.2f}'+""".
+        You total payment is $"""+f'{round(fixed_payment/100, 2):.2f}'+""".
         <br><br>
         Please enter the following paycode on Amazon M-Turk: 
         <br><br><br>
