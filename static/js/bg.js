@@ -28,7 +28,8 @@ renderport = function(){
     d3.selectAll(".port").each(function(){
   spn = d3.select(this)
   data = spn.attr('data').split(':')
-  spn.html("<span class=hl>&laquo</span> $" + data[0] + " Cash, " + data[1] + " Shares<span class=hl> &raquo</span>")
+  //spn.html("<span class=hl>&laquo</span> $" + data[0] + " Cash, " + data[1] + " Shares<span class=hl> &raquo</span>")
+  spn.html("{<span class=hl>$" + data[0] + " and " + data[1] + " Shares</span>}")
 });
 };
 

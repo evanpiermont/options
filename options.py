@@ -155,7 +155,7 @@ def QuizVal():
         return render_template('login.html', text='You have already failed the quiz.', input=False, v=False)
 
     quiz_ans=[int(request.form['q1']),int(request.form['q2']),int(request.form['q3'])]
-    correct = [0,1,0]
+    correct = [0,1,1]
  
     if [(x+y)%2 for x, y in zip(quiz_ans, correct)] == [0,0,0]:
 

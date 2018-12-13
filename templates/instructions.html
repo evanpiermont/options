@@ -67,7 +67,7 @@
             The value of the stock option will be the difference between the current value of the stock (<b>now</b>) and its value at the time of calculation (<b>in {{delay}} days</b>), or 0, which ever is larger.
 
 
-            When choosing a portfolio, you will have acess to the current value of <span class=hl>{{symbol}}</span> as well as a chart with the indexes preformance over then last 100 days.
+            When choosing a portfolio, you will have acess to the current value of <span class=hl>{{symbol}}</span> as well as a chart with the index's preformance over then last 100 days.
 
         </div>
 
@@ -76,24 +76,24 @@
         To reiterate, <br><br>
             <ul>
                 <li>
-                If the share price of <span class=hl>{{symbol}}</span> increases over the next {{delay}} days, the option is worth the amount of th increase.
+                If the share price of <span class=hl>{{symbol}}</span> increases over the next {{delay}} days, the option is worth the amount of the increase.
                 </li><br>
                 <li>
-                If the share price of <span class=hl>{{symbol}}</span> decreases over the next {{delay}} days, the option is worth 0: you cannot lose money by holding the option.
+                If the share price of <span class=hl>{{symbol}}</span> decreases over the next {{delay}} days, the option is worth $0.00. You cannot lose money by holding the option.
                 </li>
             </ul> 
         </div>
 
         <div class="inst" id=pane-6>
-            For example, consider the portfolio <span class=port data=2.50:0.8></span>, with as cash value of $2.50 and 0.8 shares of the stock option. If
+            For example, consider the portfolio <span class=port data=2.50:0.8></span>, with a cash value of $2.50 and 0.8 shares of the stock option. If
 
              <br><br>
             <ul>
                 <li>
-                If the share price of <span class=hl>{{symbol}}</span> increases by $5.50, the portfolio is worth: 2.50 + 0.8*5.50 = $6.90.
+                If the share price of <span class=hl>{{symbol}}</span> increases by $5.50, the portfolio's stock option is worth 0.8*$5.50 = $4.40, so the portfolio's total value is: $2.50 + $4.40 = $6.90.
                 </li><br>
                 <li>
-                If the share price of <span class=hl>{{symbol}}</span> decreases by $3.20, the portfolio is worth: 2.50 + 0.8*0 = $2.50.
+                If the share price of <span class=hl>{{symbol}}</span> decreases by $3.20, the portfolio's stock option is worth $0.00, so the portfolio's total value is: $2.50.
                 </li>
             </ul>  
             <br><br>
@@ -105,10 +105,10 @@
              <br><br>
             <ul>
                 <li>
-                If the share price of <span class=hl>{{symbol}}</span> increases by $2.70, the portfolio is worth: 4.00 + 0.5*2.70 = $5.35.
+                If the share price of <span class=hl>{{symbol}}</span> increases by $2.70, the portfolio's stock option is worth 0.5*$2.70 = $1.35, so the portfolio's total value is: $4.00 + $1.35 = $5.35.
                 </li><br>
                 <li>
-                If the share price of <span class=hl>{{symbol}}</span> decreases by $1.90, the portfolio is worth: 4.90 + 0.5*0 = $4.00.
+                If the share price of <span class=hl>{{symbol}}</span> decreases by $1.90, the portfolio's stock option is worth $0.00, so the portfolio's total value is: $4.00.
                 </li>
             </ul>  
             <br><br>
@@ -131,7 +131,7 @@
                 If you get one or more questions wrong, the study ends and you receive ${{fixed_payment}}.
                 </li>
                 <li>
-                If you answer all questions correctly, you'll receive ${{fixed_payment}} for completing the study and the value of your seleted portforlio.
+                If you answer all questions correctly, you'll receive ${{fixed_payment}} for completing the study and the value of your seleted portfolio.
                 </li>
             </ul>
         </div>

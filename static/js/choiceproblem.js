@@ -1,6 +1,6 @@
 
 
-var option_len = 7;
+var option_len = 5;
 var click_hist = [];
 var chart_time = 0;
 
