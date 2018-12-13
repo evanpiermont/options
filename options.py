@@ -30,7 +30,7 @@ session = db.session
 
 fixed_payment = 25 #fixed payment in cents
 questions = 5 #number of questions per group
-rounds = 2 #number of rounds.
+rounds = 5 #number of rounds.
 groups = 1 #number of groups
 delay = 7 #time till execution 
 
