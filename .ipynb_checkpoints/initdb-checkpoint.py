@@ -19,21 +19,21 @@ session = db.session
 ## create portfolios list of lists of portfolios (inner list groups by GROUP)
 ## that is, each inner list should contain 6 portfolios, one of each type:
 
-#1: cash_init 
-#2: long_init 
-#3: cash_attr 
-#4: long_attr 
-#5: cash_comp 
-#6: long_comp 
+#0: cash_init 
+#1: long_init 
+#2: cash_attr 
+#3: long_attr 
+#4: cash_comp 
+#5: long_comp 
 
 
 portfolio_list = [
 [ #group 0
-{'cash': 200, 'long_share': 50, 'time': 7, 'p_type': 0}, #cash_init 
-{'cash': 50, 'long_share': 200, 'time': 7, 'p_type': 1}, #long_init
-{'cash': 150, 'long_share': 0, 'time': 7, 'p_type': 2}, #cash_attr 
+{'cash': 450, 'long_share': 50, 'time': 7, 'p_type': 0}, #cash_init 
+{'cash': 100, 'long_share': 200, 'time': 7, 'p_type': 1}, #long_init
+{'cash': 300, 'long_share': 0, 'time': 7, 'p_type': 2}, #cash_attr 
 {'cash': 0, 'long_share': 150, 'time': 7, 'p_type': 3}, #long_attr
-{'cash': 250, 'long_share': 0, 'time': 7, 'p_type': 4}, #cash_comp 
+{'cash': 500, 'long_share': 0, 'time': 7, 'p_type': 4}, #cash_comp 
 {'cash': 0, 'long_share': 250, 'time': 7, 'p_type': 5} #long_comp
 ]
 ]

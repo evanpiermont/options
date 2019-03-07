@@ -50,6 +50,7 @@ function togChart() { //open and close the chart app
           startTime = new Date();
           gw.style("display", 'block')
           cp.style("display", 'none')
+          d3.select('#graph_tog').text('Close Chart')
         }else{
           endTime = new Date();
           chart_time += (endTime - startTime); //in ms
@@ -58,6 +59,7 @@ function togChart() { //open and close the chart app
           console.log(chart_time_input.value)
           gw.style("display", 'none')
           cp.style("display", 'block')
+          d3.select('#graph_tog').text('Show Chart')
         }
       });
 
